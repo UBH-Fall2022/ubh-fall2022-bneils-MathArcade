@@ -1,4 +1,26 @@
 # This will be where all sprites are created.
-# Also, the color palette will be created here fixed colors.
+# Also, the color palette will be created here w/ some fixed colors.
 
+# Pink is used as the transparency index, so any pixels colored with
+# (255,0,128) will not be rendered.
 
+palettes:
+  - name: global_palette
+    fixed-entries:
+      - color: {index: 0, r: 255, g: 0, b: 128}
+      - color: {index: 1, r: 0, g: 0, b: 0}
+      - color: {index: 2, r: 255, g: 255, b: 255}
+    images: automatic
+
+converts:
+  - name: sprites
+    palette: global_palette
+    transparent-color-index: 0
+
+outputs:
+  - type: c
+    include-file: gfx.h
+    palettes:
+      - global_palette
+    converts:
+      - sprites
