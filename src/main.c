@@ -3,11 +3,13 @@
 
 #include "gfx.h"
 
-/* Initializes the palette using the pre-generated array created by convimg.
- * The colors will be defined using an enum.
- */
-#define palette_init() gfx_SetPalette(global_palette, \
-				sizeof_global_palette, sprites_palette_offset);
+static inline void palette_init();
+
+const char *list_items[] = {
+	"sudoku",
+	"sokoban",
+	NULL
+};
 
 int main(void) {
 	gfx_Begin();
@@ -15,9 +17,7 @@ int main(void) {
 	palette_init();
 
 	gfx_FillScreen(WHITE);
-	gfx_SetColor(BLACK);
-	gfx_FillRectangle(20, 20, 20, 20);
-
+	g_list(list_items);
 	gfx_SwapDraw();
 
 	while (!os_GetCSC())
@@ -26,3 +26,13 @@ int main(void) {
 	gfx_End();
 }
 
+/* Initializes the palette using the pre-generated array created by convimg.
+ * The colors will be defined using an enum.
+ */
+static inline void palette_init() {
+	gfx_SetPalette(global_palette, sizeof_global_palette,
+		sprites_palette_offset);
+	gfx_SetTextTransparentColor(TRANSPARENT);
+	gfx_SetTransparentColor(TRANSPARENT);
+	gfx_SetTextBGColor(TRANSPARENT);
+}

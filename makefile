@@ -17,4 +17,4 @@ include $(shell cedev-config --makefile)
 .PHONY = CEmu cemu
 
 CEmu cemu:
-	$@ -s $(NAME).8xp
+	$@ -s bin/$(NAME).8xp &
