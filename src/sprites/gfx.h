@@ -10,6 +10,15 @@ extern "C" {
 #include "sudoku.h"
 #include "snake.h"
 #include "game2048.h"
+#include "sokoban.h"
+#include "sokobox.h"
+#include "sokowall.h"
+#include "sokofloor.h"
+#include "sokodest.h"
+#include "sokoup.h"
+#include "sokodown.h"
+#include "sokoleft.h"
+#include "sokoright.h"
 
 #ifdef __cplusplus
 }

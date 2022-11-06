@@ -5,11 +5,11 @@
 extern "C" {
 #endif
 
-#define snake_width 128
-#define snake_height 64
-#define snake_size 8194
+#define snake_width 32
+#define snake_height 32
+#define snake_size 1026
 #define snake ((gfx_sprite_t*)snake_data)
-extern unsigned char snake_data[8194];
+extern unsigned char snake_data[1026];
 
 #ifdef __cplusplus
 }

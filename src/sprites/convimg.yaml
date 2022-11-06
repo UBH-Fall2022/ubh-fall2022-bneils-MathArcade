@@ -23,7 +23,15 @@ converts:
       - sudoku.png
       - snake.png
       - game2048.png
-
+      - sokoban.png
+      - sokobox.png
+      - sokowall.png
+      - sokofloor.png
+      - sokodest.png
+      - sokoup.png
+      - sokodown.png
+      - sokoleft.png
+      - sokoright.png
 outputs:
   - type: c
     include-file: gfx.h

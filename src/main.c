@@ -7,6 +7,7 @@
 #include "sudoku_app.h"
 #include "snake_app.h"
 #include "game2048_app.h"
+#include "sokoban_app.h"
 
 #define LEFT_PADDING 20
 #define TOP_PADDING 20
@@ -21,7 +22,6 @@ const char *list_items[] = {
 	"sokoban",
 	"2048",
 	"snake",
-	"arkanoid",
 	NULL
 };
 
@@ -63,18 +63,16 @@ static void selection_screen(void) {
 	// The image to be displayed by when a user hovers over the icon.
 	const gfx_sprite_t *sprites[N_GAMES] = {
 		sudoku,
-		sudoku,
+		sokoban,
 		game2048,
 		snake,
-		sudoku,
 	};
 
 	void (*gameloops[N_GAMES])(void) = {
 		sudoku_mainloop,
-		sudoku_mainloop,
+		sokoban_mainloop,
 		game2048_mainloop,
 		snake_mainloop,
-		sudoku_mainloop,
 	};
 
 	for (;;) {
@@ -83,7 +81,7 @@ static void selection_screen(void) {
 		g_sel(LEFT_PADDING - CURSOR_WIDTH, TOP_PADDING);
 		gfx_SetTextFGColor(BLUE);
 		g_list(msgs, LCD_WIDTH - gfx_GetStringWidth(msgs[2]) - LEFT_PADDING, TOP_PADDING);
-		gfx_Sprite(sprites[listcur], (LCD_WIDTH - sudoku_width) / 2, LCD_HEIGHT - sudoku_height);
+		g_blit_sprite4x(sprites[listcur], (LCD_WIDTH - sprites[listcur]->width * 4) / 2, LCD_HEIGHT - sprites[listcur]->height*4);
 		gfx_SwapDraw();
 
 		int key;

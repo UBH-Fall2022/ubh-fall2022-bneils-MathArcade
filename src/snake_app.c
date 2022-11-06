@@ -90,6 +90,8 @@ void snake_mainloop(void) {
             if (diry != 1) dir_changed = true;
             dirx = 0;
             diry = 1;
+        } else if (kb_Data[6] & kb_Clear) { // quit the game
+            return;
         }
 skip_dir_change: // for trying to go in opp directions
 
