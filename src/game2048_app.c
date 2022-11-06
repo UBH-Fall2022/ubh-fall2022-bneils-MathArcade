@@ -92,12 +92,13 @@ static void draw_board(void) {
     gfx_SetTextFGColor(BLACK);
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
-            int py = y * CELL_WIDTH + 5;
-            int px = x * CELL_WIDTH + LEFTPAD + 5;
+            int py = y * CELL_WIDTH + 5 + (CELL_WIDTH - 8) / 2;
+            int px;
             int n = board[y][x];
             if (!n) continue;
             char str_n[16];
             sprintf(str_n, "%d", n);
+            px = x * CELL_WIDTH + LEFTPAD + 5 + (CELL_WIDTH - gfx_GetStringWidth(str_n)) / 2;
             gfx_PrintStringXY(str_n, px, py);
         }
     }
