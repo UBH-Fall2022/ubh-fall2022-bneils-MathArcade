@@ -2,7 +2,7 @@
 This is a suite of some games for the TI 84 Plus CE, written in C and using the [C/C++ CE Toolchain](https://github.com/CE-Programming/toolchain)
 To compile, download the toolchain and place the bin/ directory on your PATH. Then, run make in the project directory and move the .8xp file and the clibs.8xg file to your calculator using file transferring software such as CE Connect (Windows/Mac) or tilp (Linux). Note that if you're using Linux, tilp may need special (root) permissions to access the cable connection.
 The download for clibs.8xg can be found on the toolchain's Releases page.
-**Caution**: There be spaghetti code within these dwellings. You've been warned.g
+**Caution**: There be spaghetti code within these dwellings. You've been warned.
 # UB Hacking Fall 2022 Rules 
 - Teams can consist of between 1 and 4 people.
 - To have your submission be considered for judging, you must submit a 2-5 minute video along with your project. Try to keep it as concise as possible!
