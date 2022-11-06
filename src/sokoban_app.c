@@ -66,7 +66,7 @@ static void draw_level(uint8_t *level, uint8_t levelidx) {
     //uint8_t *level =  (uint8_t*)sokoban_levels[levelidx];
     int offx = levelcellshifts[levelidx][0] * 16;
     int offy = levelcellshifts[levelidx][1] * 16;
-    gfx_FillScreen(BLACK);
+    gfx_FillScreen(WHITE);
     for (int y = 0; y < LEVEL_HEIGHT; ++y) {
         for (int x = 0; x < LEVEL_WIDTH; ++x) {
             bool isplayer=false;
@@ -94,18 +94,17 @@ static void draw_level(uint8_t *level, uint8_t levelidx) {
                     break;
                 case S_FLOOR:
                 default:
-                    sprite = sokofloor;
+                    sprite=NULL;
                     break;
             }
             if (isplayer) {
-                gfx_sprite_t *floor_type;
-                floor_type = (sokoban_levels[levelidx][y][x] == S_DEST) ? sokodest : sokofloor;
-
-                gfx_Sprite(floor_type, x*16+LOFF+offx,y*16+offy-1);
+                if (sokoban_levels[levelidx][y][x] == S_DEST)
+                    gfx_Sprite(sokodest, x*16+LOFF+offx,y*16+offy-1);
                 gfx_TransparentSprite(sprite, x*16+LOFF+offx,y*16+offy-1);
             }
-            else
+            else if (sprite) {
                 gfx_Sprite(sprite, x*16+LOFF+offx,y*16+offy-1);
+            }
         }
     }
 }
@@ -118,8 +117,7 @@ void sokoban_mainloop(void) {
         sprintf(s, "LEVEL %d", i);
         gfx_PrintStringXY(s, (GFX_LCD_WIDTH - gfx_GetStringWidth(s) )/ 2, GFX_LCD_HEIGHT / 2);
         gfx_SwapDraw();
-        while (!os_GetCSC())
-            ;
+        usleep(1000000);
         sokoban_player(i);
         if (exitflag) return;
     }
@@ -200,9 +198,6 @@ found_player:
             continue; // dunno?
         }
         if (!can_move) {
-            gfx_FillScreen(RED);
-            gfx_SwapDraw();
-            usleep(10000);
             continue;
         }
         sokoban_level[playery][playerx] = lasttile;

@@ -12,8 +12,6 @@ sokobox.h
 sokobox.c
 sokowall.h
 sokowall.c
-sokofloor.h
-sokofloor.c
 sokodest.h
 sokodest.c
 sokoup.h

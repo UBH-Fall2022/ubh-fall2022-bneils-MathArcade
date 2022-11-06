@@ -26,7 +26,6 @@ converts:
       - sokoban.png
       - sokobox.png
       - sokowall.png
-      - sokofloor.png
       - sokodest.png
       - sokoup.png
       - sokodown.png

@@ -13,7 +13,6 @@ extern "C" {
 #include "sokoban.h"
 #include "sokobox.h"
 #include "sokowall.h"
-#include "sokofloor.h"
 #include "sokodest.h"
 #include "sokoup.h"
 #include "sokodown.h"

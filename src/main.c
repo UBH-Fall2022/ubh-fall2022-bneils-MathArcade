@@ -57,6 +57,10 @@ static void selection_screen(void) {
 		"keys to control the cursor.",
 		"b) Press 2nd to boot the game.",
 		"c) To exit, press Clear.",
+		"d) Use arrow keys for movement.",
+		"Also, Sudoku uses numpad. You",
+		"can only place stuff if you're",
+		"allowed to in that cell. FYI.",
 		NULL,
 	};
 
@@ -80,7 +84,7 @@ static void selection_screen(void) {
 		g_list(list_items, LEFT_PADDING, TOP_PADDING);
 		g_sel(LEFT_PADDING - CURSOR_WIDTH, TOP_PADDING);
 		gfx_SetTextFGColor(BLUE);
-		g_list(msgs, LCD_WIDTH - gfx_GetStringWidth(msgs[2]) - LEFT_PADDING, TOP_PADDING);
+		g_list(msgs, LCD_WIDTH - gfx_GetStringWidth(msgs[4]) - LEFT_PADDING, TOP_PADDING);
 		g_blit_sprite4x(sprites[listcur], (LCD_WIDTH - sprites[listcur]->width * 4) / 2, LCD_HEIGHT - sprites[listcur]->height*4);
 		gfx_SwapDraw();
 
