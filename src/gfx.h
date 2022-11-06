@@ -13,7 +13,9 @@ enum Colors {
 	WHITE,
 	RED,
 	GREEN,
-	BLUE
+	BLUE,
+	GRAY1,
+	GRAY2,
 };
 
 void g_list(const char *s[], int x, int y);

@@ -28,6 +28,7 @@ const char *list_items[] = {
 #define N_GAMES (sizeof(list_items) / sizeof(list_items[0]) - 1)
 
 int main(void) {
+	srandom(rtc_Time());
 	gfx_Begin();
 	gfx_SetDrawBuffer();
 	palette_init();

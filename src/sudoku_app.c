@@ -28,6 +28,7 @@ static bool all81(unsigned char *arr);
 
 // The amount of pixels on the left/right
 #define BOX_THICKNESS 2
+#define CHAR_HEIGHT 8
 
 // How many pixels need to be subtracted from the lines due to integer
 // divison.
@@ -37,7 +38,7 @@ static bool all81(unsigned char *arr);
 
 /* Draws a grayed box representing the user's selection */
 static void draw_sel(int x, int y) {
-    gfx_SetColor(GREEN);
+    gfx_SetColor(GRAY1);
     gfx_FillRectangle(SQUARE_LRMARGIN*2 + x * CELL_WIDTH, y * CELL_WIDTH, CELL_WIDTH, CELL_WIDTH);
 }
 
@@ -46,6 +47,13 @@ static void redraw_entire_screen(int curx, int cury, unsigned char *board, unsig
     gfx_FillScreen(WHITE);
     draw_sel(curx, cury);
     gfx_SetColor(BLACK);
+
+    for (int i = 0; i < 10; ++i) {
+        if (board_initial_state[pos(curx, cury)] == 0 && validate_num_insert(curx, cury, board, i)) {
+            gfx_SetTextXY(5, 5 + i * CHAR_HEIGHT);
+            gfx_PrintChar('0' + i); //thanks, C standard for letting me do this
+        }
+    }
 
     for (int i = 0; i <= 9; ++i) {
         // the offset uses the smaller dimension, which in this
