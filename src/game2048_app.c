@@ -83,13 +83,7 @@ void game2048_mainloop(void) {
 
 static void draw_board(void) {
     gfx_FillScreen(WHITE);
-    gfx_SetColor(BLACK);
-    for (int i = 0; i <= 4; ++i) {
-        int v = i * CELL_WIDTH;
-        gfx_HorizLine(LEFTPAD, v, LCD_HEIGHT);
-        gfx_VertLine(LEFTPAD + v, 0, LCD_HEIGHT);
-    }
-    gfx_SetTextFGColor(BLACK);
+    
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
             int py = y * CELL_WIDTH + 5 + (CELL_WIDTH - 8) / 2;
@@ -98,9 +92,37 @@ static void draw_board(void) {
             if (!n) continue;
             char str_n[16];
             sprintf(str_n, "%d", n);
+            enum Colors color;
+            enum Colors textcolor = WHITE;
+            switch (n) {
+                case 2: color = G2048_2; textcolor = BLACK; break;
+                case 4: color = G2048_4; textcolor = BLACK; break;
+                case 8: color = G2048_8; break;
+                case 16: color = G2048_16; break;
+                case 32: color = G2048_32; break;
+                case 64: color = G2048_64; break;
+                case 128: color = G2048_128; break;
+                case 256: color = G2048_256; break;
+                case 512: color = G2048_512; break;
+                case 1024: color = G2048_1024; break;
+                case 2048: color = G2048_2048; break;
+                default:
+                case 4096: color = G2048_4096; break;
+            }
+            gfx_SetColor(color);
+            gfx_FillRectangle(x * CELL_WIDTH + LEFTPAD, y * CELL_WIDTH, CELL_WIDTH, CELL_WIDTH);
+
+            gfx_SetTextFGColor(textcolor);
             px = x * CELL_WIDTH + LEFTPAD + 5 + (CELL_WIDTH - gfx_GetStringWidth(str_n)) / 2;
             gfx_PrintStringXY(str_n, px, py);
         }
+    }
+
+    gfx_SetColor(BLACK);
+    for (int i = 0; i <= 4; ++i) {
+        int v = i * CELL_WIDTH;
+        gfx_HorizLine(LEFTPAD, v, LCD_HEIGHT);
+        gfx_VertLine(LEFTPAD + v, 0, LCD_HEIGHT);
     }
 }
 
