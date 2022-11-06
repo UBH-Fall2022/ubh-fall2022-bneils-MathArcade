@@ -48,7 +48,11 @@ static void redraw_entire_screen(int curx, int cury, unsigned char *board, unsig
     draw_sel(curx, cury);
     gfx_SetColor(BLACK);
 
-    for (int i = 0; i < 10; ++i) {
+    gfx_SetTextFGColor(BLACK);
+
+    // skip inserting 0 because it's going to be valid once the player solves the board.
+    // we don't want zero to show up
+    for (int i = 1; i < 10; ++i) {
         if (board_initial_state[pos(curx, cury)] == 0 && validate_num_insert(curx, cury, board, i)) {
             gfx_SetTextXY(5, 5 + i * CHAR_HEIGHT);
             gfx_PrintChar('0' + i); //thanks, C standard for letting me do this
@@ -154,10 +158,8 @@ void sudoku_mainloop(void) {
             //   the number they pressed needs to be valid
             //   in order to place in this cell, they need to have replaced something they put down or it must already be empty
             //   and lastly, they need to be able to put it there to begin with (no row, col, or box duplicates)
-            if (num_to_insert > 0 && (boardcpy[cury][curx] == 0 || board[pos(curx, cury)] == 0) && validate_num_insert(curx, cury, board, num_to_insert)) {
+            if (num_to_insert != -1 && boardcpy[cury][curx] == 0 && (num_to_insert == 0 || validate_num_insert(curx, cury, board, num_to_insert))) {
                 board[pos(curx, cury)] = num_to_insert;
-            } else if (num_to_insert == 0 && boardcpy[cury][curx] == 0) {
-                board[pos(curx, cury)] = 0;
             }
         }
 
@@ -177,7 +179,7 @@ void sudoku_mainloop(void) {
             };
 
             redraw_entire_screen(curx, cury, board, (unsigned char *) boardcpy);
-            g_list(wonlines, 5, 5);
+            g_list(wonlines, 5, 85);
             gfx_SwapDraw();
 
             while (!os_GetCSC())
