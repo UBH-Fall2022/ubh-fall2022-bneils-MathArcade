@@ -1,6 +1,12 @@
-unsigned char global_palette[6] =
+unsigned char global_palette[18] =
 {
     0x10, 0x7c, /*   0: rgb(255,   0, 132) */
     0x00, 0x00, /*   1: rgb(  0,   0,   0) */
     0xff, 0xff, /*   2: rgb(255, 255, 255) */
+    0x00, 0x7c, /*   3: rgb(255,   0,   0) */
+    0xe0, 0x83, /*   4: rgb(  0, 255,   0) */
+    0x1f, 0x00, /*   5: rgb(  0,   0, 255) */
+    0xe8, 0x1c, /*   6: rgb( 58,  57,  66) */
+    0x1f, 0x53, /*   7: rgb(165, 194, 255) */
+    0x62, 0x7a, /*   8: rgb(247, 154,  16) */
 };

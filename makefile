@@ -14,7 +14,10 @@ CXXFLAGS = -Wall -Wextra -Oz
 
 include $(shell cedev-config --makefile)
 
-.PHONY = CEmu cemu
+.PHONY = CEmu cemu sprites
 
-CEmu cemu:
+CEmu cemu: all
 	$@ -s bin/$(NAME).8xp &
+
+sprites:
+	cd src/sprites/ && convimg

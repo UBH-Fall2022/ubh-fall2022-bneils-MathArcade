@@ -1,3 +1,9 @@
 global_palette.h
 global_palette.c
+sudoku.h
+sudoku.c
+snake.h
+snake.c
+game2048.h
+game2048.c
 gfx.h

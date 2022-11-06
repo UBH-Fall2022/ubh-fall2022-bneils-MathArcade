@@ -10,8 +10,12 @@ enum Colors {
 	TRANSPARENT = 0,
 	BLACK,
 	WHITE,
+	RED,
+	GREEN,
+	BLUE
 };
 
-void g_list(const char *s[]);
+void g_list(const char *s[], int x, int y);
+void g_sel(int x, int y);
 
 #endif // SRC_GFX_H
